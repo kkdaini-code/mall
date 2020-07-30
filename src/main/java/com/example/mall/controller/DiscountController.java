@@ -1,16 +1,15 @@
 package com.example.mall.controller;
 
 
-import com.example.mall.service.IGoodsService;
+import com.example.mall.bean.Discount;
+import com.example.mall.service.IDiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -18,15 +17,14 @@ import java.util.Map;
  * </p>
  *
  * @author kkdaini
- * @since 2020-07-28
+ * @since 2020-07-29
  */
 @RestController
-public class GoodsController {
+public class DiscountController {
     @Autowired
-    private IGoodsService goodsService;
-
-    @GetMapping("/goods/{tid}")
-    public List<Map<String, Object>> getGoods(@PathVariable int tid){
-        return goodsService.featured(tid);
+    private IDiscountService discountService;
+    @GetMapping("/discount")
+    public List<Discount> getDis(){
+        return discountService.list();
     }
 }

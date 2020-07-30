@@ -3,3 +3,9 @@ spring:
     url: jdbc:mysql://192.168.1.136:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
     username: root
     password: root
+  mail:
+    host: smtp.163.com
+    username: kkdaini@163.com
+    password: qwer123
+    default-encoding: utf-8
+    properties.mail.smtp.ssl.enable: true

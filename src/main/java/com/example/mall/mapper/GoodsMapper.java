@@ -3,6 +3,9 @@ package com.example.mall.mapper;
 import com.example.mall.bean.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface GoodsMapper extends BaseMapper<Goods> {
 
+    List<Map<String, Object>> featured(int tid);
 }

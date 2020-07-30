@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" >
+    <title>主页</title>
+
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.136/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.136/css/carousel.css" />
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.136/css/public.css" />
+    <style type="text/css">
+        body {
+            overflow: scroll;
+            overflow-y: hidden;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-首页
+<header>
+    <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#"> <img src="https://v4.bootcss.com/docs/assets/brand/bootstrap-solid.svg" width="30"
+                                               height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        </a>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">首页</a>
+                <a class="nav-item nav-link" href="/jp/featured" target="main">精选</a>
+                <a class="nav-item nav-link" href="/jp/fashion" target="main">时尚好货</a>
+            </div>
+        </div>
+        <div class="navbar-expand">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/jp/me" target="main">
+                    <svg class="icon">
+                        <use xlink:href="#iconme"></use>
+                    </svg>
+                </a>
+                <!-- 心愿单 -->
+                <!-- <a class="nav-item nav-link" href="love.html" target="main">
+                    <svg class="icon">
+                        <use xlink:href="#iconlike"></use>
+                    </svg></a> -->
+                <a class="nav-item nav-link" href="/jp/cart" target="main">
+                    <svg class="icon">
+                        <use xlink:href="#iconshopping"></use>
+                    </svg></a>
+                <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#search">
+                    <svg class="icon">
+                        <use xlink:href="#iconsearch"></use>
+                    </svg></a>
+            </div>
+        </div>
+    </nav>
+</header>
+<iframe name="main" class="w-100 h-100" src="/jp/home"></iframe>
+
+<!-- create user modal -->
+<div class="modal fade " id="search" >
+    <div class="modal-dialog  modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+        <h5 class="modal-title">创建用户</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" />
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-outline-success mt-0">搜索</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div> -->
+        </div>
+    </div>
+</div>
+
+<script src="https://at.alicdn.com/t/font_1962218_rmpvz9m7g.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script src="http://192.168.1.136/js/public.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
