@@ -16,4 +16,8 @@ import java.util.Map;
  */
 public interface IGoodsService extends IService<Goods> {
     List<Map<String,Object>> featured(int tid);
+
+    List<Map<String, Object>> findAll();
+
+    Map<String, Object> find(int gid);
 }

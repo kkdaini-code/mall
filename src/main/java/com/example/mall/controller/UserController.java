@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.Assert;
 import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
 import com.example.mall.bean.Result;
 import com.example.mall.bean.User;
+import com.example.mall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,15 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 public class UserController {
+    @Autowired
+    private IUserService userService;
+
     @PostMapping("/user")
     public boolean user(User user, String emailCode , HttpSession session){
-        System.out.println(user);
-        System.out.println(emailCode);
-        System.out.println(session.getAttribute("emailCode"));
         Assert.eq(emailCode,session.getAttribute("emailCode"), ApiErrorCode.FAILED);
+        user.setAvatar("tou.jpg");
+        userService.save(user);
+        session.setAttribute("user",user);
         return true;
     }
 

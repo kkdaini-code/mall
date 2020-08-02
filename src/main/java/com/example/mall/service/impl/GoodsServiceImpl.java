@@ -28,4 +28,14 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     public List<Map<String, Object>> featured(int tid) {
         return goodsMapper.featured(tid);
     }
+
+    @Override
+    public List<Map<String, Object>> findAll() {
+        return goodsMapper.findAll();
+    }
+
+    @Override
+    public Map<String, Object> find(int gid) {
+        return goodsMapper.find(gid);
+    }
 }

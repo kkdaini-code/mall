@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.136:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
+    url: jdbc:mysql://192.168.1.149:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
     username: root
     password: root
   mail:
@@ -9,3 +9,5 @@ spring:
     password: qwer123
     default-encoding: utf-8
     properties.mail.smtp.ssl.enable: true
+server:
+  port: 8888

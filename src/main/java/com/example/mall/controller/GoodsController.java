@@ -26,7 +26,11 @@ public class GoodsController {
     private IGoodsService goodsService;
 
     @GetMapping("/goods/{tid}")
-    public List<Map<String, Object>> getGoods(@PathVariable int tid){
+    public List<Map<String, Object>> getGoodsById(@PathVariable int tid){
         return goodsService.featured(tid);
+    }
+    @GetMapping("/goods")
+    public List<Map<String, Object>> getGoods(){
+        return goodsService.findAll();
     }
 }

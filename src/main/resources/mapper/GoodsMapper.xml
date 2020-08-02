@@ -5,4 +5,10 @@
         select g.id,name,price,discount_price,status,src,more,title,type  from goods g inner join images i on g.id =i.gid inner join details d  on d.gid=g.id inner join type t on d.tid=t.id
        where t.id=#{tid}
     </select>
+    <select id="findAll" resultType="map">
+        select *  from goods g inner join images i on g.id =i.gid inner join details d  on d.gid=g.id
+    </select>
+    <select id="find" resultType="map">
+        select *  from goods g inner join images i on g.id =i.gid inner join details d  on d.gid=g.id where g.id=#{gid}
+    </select>
 </mapper>

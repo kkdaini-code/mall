@@ -4,7 +4,11 @@ import com.example.mall.bean.ShoppingCart;
 import com.example.mall.mapper.ShoppingCartMapper;
 import com.example.mall.service.IShoppingCartService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,5 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, ShoppingCart> implements IShoppingCartService {
+    @Autowired
+    private ShoppingCartMapper shoppingCartMapper;
 
+    @Override
+    public List<Map<String, Object>> find(Integer id) {
+        return shoppingCartMapper.find(id);
+    }
 }

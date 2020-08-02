@@ -25,4 +25,8 @@ public class JumpController {
     public String love(){return "love";}
     @GetMapping("/me")
     public String me(){return "me";}
+    @GetMapping("/commodity")
+    public String commodity(){
+        return "commodity";
+    }
 }
