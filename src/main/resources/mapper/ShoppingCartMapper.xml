@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.ShoppingCartMapper">
     <select id="find" resultType="map">
-        select name,src,discount_price,itm,value,number from shopping_cart s inner join goods g on s.gid=g.id inner join specification sp on sp.id=s.sid
+        select s.gid,name,src,discount_price,itm,value,number from shopping_cart s inner join goods g on s.gid=g.id inner join specification sp on sp.id=s.sid
         inner join images i on i.gid=g.id where s.uid=#{id}
     </select>
+    <delete id="removes">
+        delete from shopping_cart where uid=#{uid} and gid in
+        <foreach item="gid" collection="gids" open="(" separator="," close=")">
+            #{gid}
+        </foreach>
+    </delete>
 </mapper>

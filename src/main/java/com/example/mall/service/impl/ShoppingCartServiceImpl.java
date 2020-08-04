@@ -27,4 +27,9 @@ public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, Sho
     public List<Map<String, Object>> find(Integer id) {
         return shoppingCartMapper.find(id);
     }
+
+    @Override
+    public boolean removes(Integer uid, List<Integer> gids) {
+        return shoppingCartMapper.removes(uid,gids);
+    }
 }

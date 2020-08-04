@@ -14,105 +14,17 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-check">
-								<input class="form-check-input position-static" type="checkbox" id="select" name="select" onclick="app.selectAll(this)">
+								<input class="form-check-input position-static" type="checkbox" id="select" name="select" onclick="checkOrCancelAll()">
 								<span>全选</span>
 							</div>
 						</div>
 						<div class="col d-flex justify-content-end">
-							<button type="button" class="btn btn-danger mb-1">删除</button>
+							<button type="button" class="btn btn-danger mb-1" id="del">删除</button>
 						</div>
 					</div>
 					<hr class="featurette-divider mt-0 mb-5">
 					<div id="container1">
-						
 					</div>
-					
-					
-					<!-- <div class="row d-flex align-items-center">
-						<div class="col-2">
-							<div class="form-check">
-								<input class="form-check-input position-static" type="checkbox" name="select">
-							</div>
-						</div>
-						<div class="col">
-							<div class="card mb-3">
-								<div class="row no-gutters">
-									<div class="col">
-										<img src="img/4.jpg" class="card-img">
-									</div>
-									<div class="col">
-										<div class="card-body">
-											<h5 class="card-title">GC女装</h5>
-											<p class="card-text mb-0">
-												<small class="text-muted">款号#580762XJB7U5412</small>
-											</p>
-											<p class="card-text mb-0">
-												<small class="text-muted">款式：松紧</small>
-											</p>
-											<p class="card-text">
-												<small class="text-muted">尺码：M</small>
-											</p>
-											<p class="card-text"><small class="text-muted">有货</small></p>
-										</div>
-									</div>
-									<div class="col">
-										￥<span class="price">120.00</span>
-										<p class="mt-4">
-											<select class="form-control w-50">
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-											</select>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<hr class="featurette-divider mt-0 mb-3"> -->
-					<!-- <div class="row d-flex align-items-center">
-						<div class="col-2">
-							<div class="form-check">
-								<input class="form-check-input position-static" type="checkbox" name="select">
-							</div>
-						</div>
-						<div class="col">
-							<div class="card mb-3">
-								<div class="row no-gutters">
-									<div class="col">
-										<img src="img/4.jpg" class="card-img">
-									</div>
-									<div class="col">
-										<div class="card-body">
-											<h5 class="card-title">GC女装</h5>
-											 <p class="card-text mb-0">
-												<small class="text-muted">颜色：松紧</small>
-											</p> 
-											<p class="card-text">
-												<small class="text-muted">尺码：M</small>
-											</p>
-											<p class="card-text"><small class="text-muted">有货</small></p>
-										</div>
-									</div>
-									<div class="col">
-										￥<span class="price">120.00</span>
-										<p class="mt-4">
-											<select class="form-control w-50">
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-											</select>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<hr class="featurette-divider  mb-3"> -->
 					<div class="row">
 						<div class="col d-flex justify-content-end">
 							<span class="price">合计：￥<span id="total"></span></span>
@@ -137,7 +49,7 @@
 					x+=`<div class="row d-flex align-items-center">
 						<div class="col-2">
 							<div class="form-check">
-								<input class="form-check-input position-static" type="checkbox" name="select">
+								<input class="form-check-input position-static" type="checkbox" name="select" data-gid="`+this.gid+`">
 							</div>
 						</div>
 						<div class="col">
@@ -158,7 +70,7 @@
 											<p class="card-text"><small class="text-muted">有货</small></p>
 										</div>
 									</div>
-									<div class="col">
+									<div class="col" name="prices">
 										￥<span class="price">`+this.discount_price+`</span>
 										<p class="mt-4">
 											<input class="form-control w-50" value="`+this.number+`"/>
@@ -169,17 +81,66 @@
 						</div>
 					</div>
 					<hr class="featurette-divider mt-0 mb-3">`
-					
+
 					$("#container1").append(x)
 				});
 			});
-			/* app.selectAll("select");
-			$("input").on("click", function() {
-				app.total($("#total"), $("#settlement"));
+			function checkOrCancelAll() {
+				var checkedElt = document.getElementById("select").checked;
+				var allCheck = document.getElementsByName("select");
+				if (checkedElt) {
+					for (var i = 0; i < allCheck.length; i++) {
+						allCheck[i].checked = true;
+					}
+				} else {
+					for (var i = 0; i < allCheck.length; i++) {
+						allCheck[i].checked = false;
+					}
+				}
+			}
+			function calculateCost(){
+				var allCheck = document.getElementsByName("select");
+				var tmp=0;
+				$(allCheck).each(function(){
+					if(this.checked){
+						var prices=$($(this).parents(".row")[0]).find("div [name='prices']")[0];
+						var price=$($(prices).find("span")).html();
+						var number =$($(prices).find("input")).val();
+						if(!isNaN(price*number)){
+							tmp +=price*number;
+						}
+					}
+				});
+				$("#total").html(tmp);
+			}
+
+			$("#del").on("click",function (){
+				var tmp=[];
+				var allCheck = document.getElementsByName("select");
+				$(allCheck).each(function(){
+					if(this.checked){
+						var x=$(this).attr("data-gid");
+						if(!isNaN(x)){
+							tmp.push(x)
+						}
+					}
+				});
+				$.ajax({
+					url:"/shopping-cart",
+					type:"post",
+					dataType:"json",
+					traditional:true,
+					data:{"_method":"delete","gids":tmp},
+					success:function (data) {
+						if(data){
+							window.location.href="/jp/cart"
+						}
+					}
+				});
 			});
-			$("select").change(function() {
-				app.total($("#total"), $("#settlement"));
-			}) */
+			$('body').on("click",'input',function (){
+				calculateCost();
+			});
 		</script>
 	</body>
 </html>

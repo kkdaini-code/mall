@@ -17,4 +17,6 @@ import java.util.Map;
 public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
 
     List<Map<String, Object>> find(Integer id);
+
+    boolean removes(Integer uid, List<Integer> gids);
 }
